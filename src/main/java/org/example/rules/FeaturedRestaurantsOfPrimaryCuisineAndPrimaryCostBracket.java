@@ -3,7 +3,7 @@ package org.example.rules;
 import org.example.entities.Restaurant;
 import org.example.entities.User;
 
-public class FeaturedRestaurantsOfPrimaryCuisineAndPrimaryCostBracket implements Rule {
+public class FeaturedRestaurantsOfPrimaryCuisineAndPrimaryCostBracket implements SortingRule {
     @Override
     public int run(User user, Restaurant restaurant1, Restaurant restaurant2) {
         if (restaurant1.isRecommended() == restaurant2.isRecommended() &&

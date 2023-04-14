@@ -1,6 +1,7 @@
 package org.example.entities;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Restaurant {
     private String restaurantId;
@@ -56,5 +57,18 @@ public class Restaurant {
 
     public void setOnboardedTime(Date onboardedTime) {
         this.onboardedTime = onboardedTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Restaurant that = (Restaurant) o;
+        return restaurantId.equals(that.restaurantId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(restaurantId);
     }
 }

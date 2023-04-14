@@ -23,7 +23,9 @@ public class CostAndCuisineRule implements Rule {
     public int comparator(User user, Restaurant restaurant1, Restaurant restaurant2) {
         if (preRequisiteFilter.check(restaurant1) && preRequisiteFilter.check(restaurant2)) {
             if (matchCostAndCuisine(restaurant1, user) && matchCostAndCuisine(restaurant2, user)) {
-                return (int) (100 * (restaurant2.getRating() - restaurant1.getRating()));
+                if (restaurant1.getRating() == restaurant2.getRating())
+                    return 0;
+                return restaurant1.getRating() > restaurant2.getRating() ? -1 : 1;
             } else if (matchCostAndCuisine(restaurant1, user)) {
                 return -1;
             } else if (matchCostAndCuisine(restaurant2, user)) {

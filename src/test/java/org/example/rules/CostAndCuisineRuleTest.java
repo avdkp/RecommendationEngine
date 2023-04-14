@@ -30,7 +30,7 @@ class CostAndCuisineRuleTest {
         restaurant2.setCuisine(user.getPrimaryCuisine().getType());
         restaurant2.setCostBracket(user.getPrimaryCost().getType());
         restaurant2.setRating(4.1F);
-        assertEquals(-40,rule.comparator(user, restaurant1, restaurant2));
+        assert(rule.comparator(user, restaurant1, restaurant2)<0);
     }
 
     @Test

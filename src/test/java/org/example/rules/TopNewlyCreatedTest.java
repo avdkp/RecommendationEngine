@@ -44,7 +44,7 @@ class TopNewlyCreatedTest {
         }
         restaurant2.setRating(3.3F);
         restaurant2.setOnboardedTime(date2);
-        assertEquals(100, rule.comparator(user, restaurant1, restaurant2));
+        assert (rule.comparator(user, restaurant1, restaurant2) > 0);
     }
 
 
@@ -78,7 +78,7 @@ class TopNewlyCreatedTest {
         }
         restaurant2.setRating(3.3F);
         restaurant2.setOnboardedTime(date2);
-        assert(rule.comparator(user, restaurant1, restaurant2) > 0);
+        assert (rule.comparator(user, restaurant1, restaurant2) > 0);
     }
 
     @Test

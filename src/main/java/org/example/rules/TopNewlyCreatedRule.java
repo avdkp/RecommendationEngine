@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 public class TopNewlyCreatedRule implements Rule {
     private final int maxLimit;
+
     public TopNewlyCreatedRule(int maxLimit) {
         this.maxLimit = maxLimit;
     }
@@ -17,9 +18,11 @@ public class TopNewlyCreatedRule implements Rule {
     @Override
     public int comparator(User user, Restaurant restaurant1, Restaurant restaurant2) {
         if (restaurant1.getOnboardedTime().getTime() == restaurant2.getOnboardedTime().getTime()) {
-            return (int) (100 * (restaurant2.getRating() - restaurant1.getRating()));
+            if (restaurant1.getRating() == restaurant2.getRating())
+                return 0;
+            return restaurant1.getRating() > restaurant2.getRating() ? -1 : 1;
         }
-        return restaurant2.getOnboardedTime().getTime() - restaurant1.getOnboardedTime().getTime() > 0 ? 1:-1;
+        return restaurant2.getOnboardedTime().getTime() > restaurant1.getOnboardedTime().getTime() ? 1 : -1;
     }
 
     @Override

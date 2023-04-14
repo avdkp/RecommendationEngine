@@ -12,9 +12,9 @@ public class RecommendationEngine {
     private List<Rule> rules;
     private int maxSize;
 
-    public RecommendationEngine(int maxSize) {
+    public RecommendationEngine(int maxSize, int topOnboardedRestaurantCount) {
         this.maxSize = maxSize;
-        RuleEngine ruleEngine = new RuleEngine();
+        RuleEngine ruleEngine = new RuleEngine(topOnboardedRestaurantCount);
         this.rules = ruleEngine.getRules();
     }
 
@@ -23,7 +23,7 @@ public class RecommendationEngine {
         List<Restaurant> restaurantsList = Arrays.asList(restaurants);
         Set<Restaurant> addedInResult = new HashSet<>();
 
-        for(Rule rule: rules) {
+        for (Rule rule : rules) {
             restaurantsList.sort((o1, o2) -> rule.comparator(user, o1, o2));
             List<Restaurant> filteredRestaurant = rule.filter(user, restaurantsList);
             addedInResult.addAll(filteredRestaurant);
@@ -31,6 +31,7 @@ public class RecommendationEngine {
             result.addAll(filteredIds);
             restaurantsList = restaurantsList.stream().filter(r -> !addedInResult.contains(r)).collect(Collectors.toList());
         }
+        result.addAll(restaurantsList.stream().map(Restaurant::getRestaurantId).collect(Collectors.toList()));
         return result.stream().limit(this.maxSize).toArray(String[]::new);
     }
 }

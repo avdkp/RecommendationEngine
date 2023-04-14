@@ -10,15 +10,15 @@ public class RuleEngine {
 
     private final List<Rule> rules;
 
-    private FilterRule getSmallerThanRatingFilterRule(float rating) {
+    private PreRequisite getSmallerThanRatingFilterRule(float rating) {
         return restaurant -> restaurant.getRating() < rating;
     }
 
-    private FilterRule getGreaterThanOrEqualToRatingFilterRule(float rating) {
+    private PreRequisite getGreaterThanOrEqualToRatingFilterRule(float rating) {
         return restaurant -> restaurant.getRating() >= rating;
     }
 
-    private FilterRule recommendedFilter() {
+    private PreRequisite recommendedFilter() {
         return Restaurant::isRecommended;
     }
 
@@ -70,13 +70,13 @@ public class RuleEngine {
         return new CostAndCuisineRule(getSmallerThanRatingFilterRule(rating), secondaryCuisineSelector(), primaryCostSelector());
     }
 
-    public RuleEngine() {
+    public RuleEngine(int topOnboardedRestaurantCount) {
         rules = Arrays.asList(
                 primaryCuisineAndPrimaryCostBracketRuleWithFeaturedFlag(),
                 primaryCuisineAndPrimaryCostRuleWithGreaterThanOrEqualToRating(4),
                 primaryCuisineAndSecondaryCostRuleWithGreaterThanOrEqualToRating(4.5F),
                 secondaryCuisineAndPrimaryCostRuleWithGreaterThanOrEqualToRating(4.5F),
-                topNewlyCreatedRestaurantRule(4),
+                topNewlyCreatedRestaurantRule(topOnboardedRestaurantCount),
                 primaryCuisineAndPrimaryCostRuleWithRatingLessThan(4),
                 primaryCuisineAndSecondaryCostRuleWithRatingLessThan(4.5F),
                 secondaryCuisineAndPrimaryCostRuleWithRatingLessThan(4.5F));

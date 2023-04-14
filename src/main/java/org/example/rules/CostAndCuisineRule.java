@@ -3,17 +3,16 @@ package org.example.rules;
 import org.example.entities.Restaurant;
 import org.example.entities.User;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class CostAndCuisineRule implements Rule {
 
-    private final FilterRule preRequisiteFilter;
+    private final PreRequisite preRequisiteFilter;
     private final CuisineSelector cuisineSelector;
     private final CostSelector costSelector;
 
-    public CostAndCuisineRule(FilterRule filterRule, CuisineSelector getCuisine, CostSelector costSelector) {
+    public CostAndCuisineRule(PreRequisite filterRule, CuisineSelector getCuisine, CostSelector costSelector) {
         this.preRequisiteFilter = filterRule;
         this.cuisineSelector = getCuisine;
         this.costSelector = costSelector;

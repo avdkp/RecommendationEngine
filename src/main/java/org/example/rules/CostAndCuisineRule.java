@@ -19,6 +19,7 @@ public class CostAndCuisineRule implements Rule {
     }
 
     @Override
+    //TODO try to remove if-else ladder
     public int comparator(User user, Restaurant restaurant1, Restaurant restaurant2) {
         if (preRequisiteFilter.check(restaurant1) && preRequisiteFilter.check(restaurant2)) {
             if (matchCostAndCuisine(restaurant1, user) && matchCostAndCuisine(restaurant2, user)) {

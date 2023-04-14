@@ -71,15 +71,21 @@ public class RuleEngine {
     }
 
     public RuleEngine(int topOnboardedRestaurantCount) {
+        float primaryCuisinePrimaryCostWithGreaterThanEqualToRatingValue = 4;
+        float primaryCuisineSecondaryCostWithGreaterThanEqualToRatingValue = 4.5F;
+        float secondaryCuisinePrimaryCostWithGreaterThanEqualRatingValue = 4.5F;
+        float primaryCuisinePrimaryCostRuleWithRatingLessThanValue = 4;
+        float primaryCuisineSecondaryCostRuleWithRatingLessThanValue = 4.5F;
+        float secondaryCuisinePrimaryCostRuleWithRatingLessThanValue = 4.5F;
         rules = Arrays.asList(
                 primaryCuisineAndPrimaryCostBracketRuleWithFeaturedFlag(),
-                primaryCuisineAndPrimaryCostRuleWithGreaterThanOrEqualToRating(4),
-                primaryCuisineAndSecondaryCostRuleWithGreaterThanOrEqualToRating(4.5F),
-                secondaryCuisineAndPrimaryCostRuleWithGreaterThanOrEqualToRating(4.5F),
+                primaryCuisineAndPrimaryCostRuleWithGreaterThanOrEqualToRating(primaryCuisinePrimaryCostWithGreaterThanEqualToRatingValue),
+                primaryCuisineAndSecondaryCostRuleWithGreaterThanOrEqualToRating(primaryCuisineSecondaryCostWithGreaterThanEqualToRatingValue),
+                secondaryCuisineAndPrimaryCostRuleWithGreaterThanOrEqualToRating(secondaryCuisinePrimaryCostWithGreaterThanEqualRatingValue),
                 topNewlyCreatedRestaurantRule(topOnboardedRestaurantCount),
-                primaryCuisineAndPrimaryCostRuleWithRatingLessThan(4),
-                primaryCuisineAndSecondaryCostRuleWithRatingLessThan(4.5F),
-                secondaryCuisineAndPrimaryCostRuleWithRatingLessThan(4.5F));
+                primaryCuisineAndPrimaryCostRuleWithRatingLessThan(primaryCuisinePrimaryCostRuleWithRatingLessThanValue),
+                primaryCuisineAndSecondaryCostRuleWithRatingLessThan(primaryCuisineSecondaryCostRuleWithRatingLessThanValue),
+                secondaryCuisineAndPrimaryCostRuleWithRatingLessThan(secondaryCuisinePrimaryCostRuleWithRatingLessThanValue));
     }
 
     public List<Rule> getRules() {

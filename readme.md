@@ -20,5 +20,9 @@ Tested environment
    * Call `getRestaurantRecommendations` method on it with user object and array of restaurants.
      * Please note, each restaurant object should have all the required fields.
      * Error handling has been skipped, as it was clear in the problem statement that all the required fields will be provided before using this engine.
+2. Addition of new rules
+    * Create a class implementing `Rule` interface.
+      * It should have a `comparator`
+      * It should have a `filter` which can return a list of restaurants from which qualify the given rule.
 ## Author
   - Avdhesh
